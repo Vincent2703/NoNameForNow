@@ -5,4 +5,5 @@ Jeu type RPG
 - Système de combat tour par tour
 - Quêtes
 - Acquisition de ressources naturelles (arbre/pierre ...) --> Craft
- [..?]
+ 
+[..?]
