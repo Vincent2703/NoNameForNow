@@ -1,2 +1,7 @@
+<<<<<<< HEAD
 on va modifier le fichier 
 Yan c'est le meilleur
+=======
+on va modifier le fichier
+:jhfu,gcj;h
+>>>>>>> 228dbebfa5da6f59639932aa8c9b2a98aaaed41e
