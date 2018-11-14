@@ -1,0 +1,6 @@
+#carte {
+	display: block;
+	border: 3px solid;
+    background-color: rgba(40,255,40, 0.2);
+    margin: auto;
+}
