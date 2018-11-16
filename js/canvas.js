@@ -1,14 +1,14 @@
 window.onload = init;
 
-let canvas, ctx, w, h,incrementX,incrementY;
-incrementX = 0;
-incrementY = 0;
+let canvas, ctx;
+let vitesseX = 0;
+let vitesseY = 0;
 let x=20;
 let y =20;
-let vitesseMarche=10;
+let vitesseMarche=4;
 
-let player = new Image();
-player.src = "images/characters/player.png"
+let joueur = new Image();
+joueur.src = "images/characters/player.png"
 
 
 function init() {
@@ -19,51 +19,51 @@ function init() {
   w = canvas.width;
   h = canvas.height;
 
-  window.addEventListener('keydown',handleKeydown,false);
-  window.addEventListener('keyup',handleKeyup,false);
+  window.addEventListener('keydown',touchesPress,false);
+  window.addEventListener('keyup',touchesRelache,false);
   
-  ctx.drawImage(player, x, y);
+  ctx.drawImage(joueur, x, y);
     
   // on demarre la boucle d'animation
-  requestAnimationFrame(mainloop); //Créer la fonction
+  requestAnimationFrame(bouclePrincipale); //Créer la fonction
 }
 
-function handleKeydown(evt)
+function touchesPress(evt)
 {
 	switch(evt.key)
 	{
 		case "ArrowLeft":
-			incrementY = 0;
-			incrementX = -vitesseMarche;
+			vitesseY = 0;
+			vitesseX = -vitesseMarche;
 		break;
 		case "ArrowRight":
-			incrementY = 0;
-			incrementX = vitesseMarche;
+			vitesseY = 0;
+			vitesseX = vitesseMarche;
 		break;
 		case "ArrowUp":
-			incrementY = -vitesseMarche;
-			incrementX = 0;
+			vitesseY = -vitesseMarche;
+			vitesseX = 0;
 		break;
 		case "ArrowDown":
-			incrementY = vitesseMarche;
-			incrementX = 0;
+			vitesseY = vitesseMarche;
+			vitesseX = 0;
 		break;
 	}
 }
-function handleKeyup(evt)
+function touchesRelache(evt)
 {
-	incrementX = 0;
-	incrementY = 0;
+	vitesseX = 0;
+	vitesseY = 0;
 }
 
-function mainloop() {
+function bouclePrincipale() {
 	// On efface le canvas
 	ctx.clearRect(0,0,canvas.width, canvas.height);
 	// Dessiner
-	ctx.drawImage(player,x,y);
+	ctx.drawImage(joueur,x,y);
 	// Bouger
-	x+= incrementX;
-	y+= incrementY;
+	x+= vitesseX;
+	y+= vitesseY;
 	// 
-	requestAnimationFrame(mainloop);
+	requestAnimationFrame(bouclePrincipale);
 }
