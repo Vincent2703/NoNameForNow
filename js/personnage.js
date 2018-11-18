@@ -1,41 +1,20 @@
-class personnage
-{
-	constructor(x,y,vitesseMarche,img)
-	{
+class Personnage {
+
+	constructor(x, y, persoImage, vie) {
 		this.x = x;
 		this.y = y;
-		this.direction = 0;
-		this.vitesseMarche = vitesseMarche;
-		this.img = new Image();
-		this.img.src = img;
-		this.incrementX = 0;
-		this.incrementY = 0;
+		this.persoImage = new Image();
+		this.persoImage.src = persoImage;
+		this.vie = vie;
 	}
-
-	draw(ctx)
-	{
-		ctx.drawImage(this.img, this.x, this.y);
+  
+	deplacer(dx, dy) {
+		this.x += dx*5;
+		this.y += dy*5;
 	}
+	
 
-	move(x,y)
-	{
-		this.x += (x*this.vitesseMarche);
-		this.y += (y*this.vitesseMarche);
+	dessiner(ctx) {
+		ctx.drawImage(this.persoImage, this.x, this.y);
 	}
-
-	moveEnnemi(){
-		this.x += this.vitesseMarche;
-		this.y += this.vitesseMarche;
-		//this.vitesseMarche = this.vitesseMarche * Math.random();
-	}
-
-	collisionEnnemi(){
-		if(((this.x + 100) > 400) || this.x < 0)
-			this.vitesseMarche = -this.vitesseMarche;
-		if(((this.y + 10) > 500) || this.y < 0)
-			this.vitesseMarche = -this.vitesseMarche
-
-	}
-
-
 }

@@ -1,9 +1,11 @@
 window.onload = init;
 
 let canvas, ctx, w, h;
-incrementX = 0;
-incrementY = 0;
-let player,mage;
+
+let joueur;
+
+window.addEventListener('keydown', touchePressee, false);
+//let listenerKeyUp = window.addEventListener('keyup', toucheRelachee, false);
 
 function init() {
   
@@ -16,73 +18,62 @@ function init() {
   h = canvas.height;
 
   //création du joueur
-  player = new personnage(20,20,10,"images/characters/player.png");
-  document.onkeydown = function(evt) { handleKeydown(evt, player) };
-  document.onkeyup = (evt) => { handleKeyup(evt, player)};
-     // on demarre la boucle d'animation
-  requestAnimationFrame(mainloop); //Créer la fonction
-  
+  joueur = new Personnage(20,20,"images/characters/player.png", 10); //x, y, image, vie
 
-  //création du premier ennemi
-  mage = new personnage(400,20,10,"images/characters/mage.png");
-  setInterval(moveE,500);
-  requestAnimationFrame(mainloop);
-  
-  
-   
+     // on demarre la boucle d'animation
+  requestAnimationFrame(bouclePrincipale); //Créer la fonction
 
 }
 
 
-function handleKeydown(evt, player)
+function touchePressee(evt)
 {
 	switch(evt.key)
 	{
 		case "ArrowLeft":
-			player.move(-1,0);
+			joueur.deplacer(-1,0);
 		break;
 		case "ArrowRight":
-			player.move(1, 0);
+			joueur.deplacer(1, 0);
 		break;
 		case "ArrowUp":
-			player.move(0, -1);
+			joueur.deplacer(0, -1);
 		break;
 		case "ArrowDown":
-			player.move(0, 1);
+			joueur.deplacer(0, 1);
 		break;
 	}
 }
 
-function handleKeyup(evt, player)
+function toucheRelachee()
 {
-	player.move(0, 0);
+	joueur.deplacer(0, 0);
 }
 
-function mainloop() {
-	// On efface le canvas
+function collisionsBordures() {
+	if(joueur.x <= 0){
+		return false;
+	}else{
+		return true;
+	}
+}
+
+
+function bouclePrincipale() {
+	//ctx.save();
+	
+	//listenerKeyDown;
+	//listenerKeyUp;
+
+
 	ctx.clearRect(0,0,canvas.width, canvas.height);
-	// Dessiner
-	player.draw(ctx);
-	mage.draw(ctx);
-	// Bouger
-	//x+= incrementX;
-	//y+= incrementY;
+	
+	
+	joueur.dessiner(ctx);
+	
 
-	requestAnimationFrame(mainloop);
+	requestAnimationFrame(bouclePrincipale);
+	
+	//ctx.restore();
 }
-
-function moveE(){
-	ctx.beginPath();
-	mage.moveEnnemi();
-	collision();
-	requestAnimationFrame(moveE);
-}
-
-function collision()
-{
-	mage.collisionEnnemi();
-}
-
-
-
 
